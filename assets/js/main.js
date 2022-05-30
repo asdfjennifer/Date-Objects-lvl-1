@@ -152,17 +152,24 @@ let list = [
 //lev1_6: AM PM
 console.log("%cÜbung lev1_6: AM PM", "color: tomato");
 
-let time = (x) => {
-    if (x < 12) {
-        //getHours()
-        console.log("AM");
-    } else if (x > 12) {
-        console.log("PM");
+let date11 = new Date(1999, 10, 5, 15) //PM
+let date12 = new Date()
+let date13 = new Date(2019, 12, 3, 12) //AM
+let date14 = new Date(2000, 1, 1, 11) //AM
+
+
+let time = (date) => {
+    if (date.getHours() < 12) {
+        return "AM";
+    } else {
+        return "PM";
     }
 }
 
-time(12);
-
+console.log(time(date11));
+console.log(time(date12));
+console.log(time(date13));
+console.log(time(date14));
 //=========================================================
 //lev1_7: Weekend
 console.log("%cÜbung lev1_7: Weekend", "color: tomato");
@@ -177,21 +184,25 @@ console.log("%cÜbung lev1_7: Weekend", "color: tomato");
 // getDay().
 // return "Weekend".
 // return "Arbeitstag".
+
 let istWeekend = (date) => {
     //5 = Samstag, 6 = Sonntag
-    if (date == 5 || date == 6) {
-        date.getDay();
+    let istDate = new Date(date);
+    if (istDate.getDay() == 5 || istDate.getDay() == 6) {
+        
+        //return istDate.getDay();
         return "Weekend";
-    } else if (date > 5) {
+    } else {
         //0 - 4 = Montag - Freitag
-        date.getDay();
+        // date.getDay();
         return "Arbeitstag";
     }
 }
 
-istWeekend(4);
+// istWeekend(4);
 
-console.log(istWeekend("12, 15, 2019"));
-console.log(istWeekend("2, 16, 2001"));
-console.log(istWeekend("2, 1, 2020"));
-console.log(istWeekend("2, 29, 2020"));
+//JS muss erst durch new Date() erkennen, dass es sich hier um ein Datum handelt
+console.log(istWeekend(new Date(12,15,2019)));
+console.log(istWeekend("2.16.2001"));
+console.log(istWeekend("2.1.2020"));
+console.log(istWeekend("2.29.2020"));
